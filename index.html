@@ -1803,10 +1803,13 @@
 
     /* ── Menu filter (fixed to pass button ref) ── */
     function filterMenu(cat, btn) {
-      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.menu-category').forEach(c => {
-        c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? '' : 'none';
+      const items = document.querySelectorAll('.menu-category');
+      items.forEach(c => {
+        c.style.opacity = '0'; // Desvanece
+        setTimeout(() => {
+          c.style.display = (cat === 'todos' || c.dataset.cat === cat) ? '' : 'none';
+          c.style.opacity = '1'; // Aparece
+        }, 200);
       });
     }
   </script>
